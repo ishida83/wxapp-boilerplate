@@ -1,12 +1,7 @@
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-.log
-*.log
-node_modules
-dist
-lib
+# start of template https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
+*.DS_Store
+
+node_modules/
+dist/
+
+yarn-error.log

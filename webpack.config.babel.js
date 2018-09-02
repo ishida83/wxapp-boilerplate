@@ -10,6 +10,7 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import pkg from './package.json';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { NODE_ENV, LINT } = process.env;
 const isDev = NODE_ENV !== 'production';
@@ -128,6 +129,10 @@ export default (env = {}) => {
 			shouldLint && new StylelintPlugin(),
 			min && new MinifyPlugin(),
 			new CopyPlugin(copyPatterns, { context: srcDir }),
+			new CopyWebpackPlugin([
+				{ from: `src/configs/${isDev ? 'development' : 'production'}.js`, to: 'config.js' },
+				{ from: `src/configs/${isDev ? 'development' : 'production'}.js`, to: 'src/config.js' },
+			], { debug: 'info' }),
 		].filter(Boolean),
 		devtool: isDev ? 'source-map' : false,
 		resolve: {

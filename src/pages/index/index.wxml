@@ -1,15 +1,84 @@
 <!--index.wxml-->
-<import src="../../wxml/motto/motto.wxml"/>
-<wxs src="../../wxs/powered.wxs" module="powered" />
-
+<view class="page">
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-progress">
+            <view class="weui-progress__bar">
+                <progress percent="{{progress}}" stroke-width="3" />
+            </view>
+        </view>
+        <view bindtap="bindViewTap" class="userinfo">
+            <image src="{{file}}" background-size="cover" mode="aspectFit"></image>
+        </view>
+    </view>
+</view>
 <view class="container">
-  <view bindtap="bindViewTap">
-    <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>
-  </view>
-  <view class="motto">
-    <template is="motto" data="{{motto:motto}}" />
-  </view>
-  <view class="powered">
-    <text>{{powered.by}}</text>
-  </view>
+    <view class="weui-btn-area">
+        <image class="userinfo-avatar" bindtap="chooseImage" onTap="chooseImage" disabled="{{disabled}}" src="../../images/camera.png"></image>
+    </view>
+    <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__hd weui-flex" wx:if="{{faces.length>0}}">
+            最像的明星
+            <view class="weui-panel__switch weui-flex__item">
+                    <switch checked bindchange="switchChange" />辅助线
+            </view>
+        </view>
+        <view class="weui-panel__bd" wx:if="{{faces.length>0}}">
+            <view class="weui-article">
+                <navigator wx:for="{{faces}}" wx:for-index="itemIdx" wx:for-item="itemName" wx:key="*this" url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"
+                    data-name="{{itemName.name}}" bindtap="visitIG">
+                    <view class="weui-article__section">
+                        <view class="weui-article__title weui-media-box__title">{{itemName.name}}</view>
+                        <view class="weui-article__section">
+                            <view class="weui-article__h3 weui-media-box__desc">{{itemName.prob}}%</view>
+                            <!-- <view class="weui-article__p">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo consequat.
+                            </view> -->
+                            <view class="weui-article__p">
+                                <canvas hidden="{{!showLine}}" style="width: calc(100vw - 30px); height:{{itemName.height}}px; position: absolute;" canvas-id="cv{{itemIdx}}"></canvas>
+                                <image class="weui-article__img" src="{{itemName.url}}" mode="widthFix" style="width:calc(100vw - 30px)" />
+                            </view>
+                        </view>
+                    </view>
+                    <!-- <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="https://starlog.cn/api/star/image/{{itemName.name}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{itemName.name}}</view>
+                        <view class="weui-media-box__desc">{{itemName.prob}}%</view>
+                    </view> -->
+                </navigator>
+            </view>
+        </view>
+        <view class="weui-panel__bd" wx:if="{{width!==0 && faces.length<=0 && errmsg}}">
+            <text>
+                {{errmsg}}
+            </text>
+        </view>
+    </view>
+</view>
+
+<button open-type="share" siz="mini" hover-class="none" wx:if="{{faces.length<=0}}">
+    <view class="fixed-btn-join" bindtap="joinCompetition"></view>
+</button>
+
+<view class="fixed-btn-join fixed-btn-share" bindtap="share" wx:if="{{faces.length>0}}"></view>
+
+<view class="page" wx:if="{{faces.length>0}}" style="position:fixed; top:0; left:0; right:0; bottom:0; width: {{windowWidth}}px; height:{{windowHeight}}px; visibility:hidden; z-index:-1; top:-{{windowHeight}}px;">
+    <view class="page__hd">
+        <view class="page__title"></view>
+        <view class="page__desc"></view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <view class="placeholder container">
+                    <view class="canvas-box">
+                        <canvas bindtap="save" canvas-id="myCanvas" style="width: {{windowWidth}}px; height:{{windowHeight}}px;top:-{{windowHeight}}px;"></canvas>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

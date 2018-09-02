@@ -1,0 +1,35 @@
+/**settings.wxss**/
+.container-settings {
+    height: 1000rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img-avatar {
+  width: 258rpx;
+  height: 258rpx;
+  margin: 10rpx auto;
+  margin-top: 20rpx;
+  /* border-radius: 50%; */
+  /* display: block; */
+}
+
+.link-text {
+  color: #46bd3c;
+  // margin-top: 20px;
+}
+
+
+.frame {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 4px 1px 1px #cccccc;
+    margin: 0 8px;
+    padding: 16px;
+    position: relative;
+
+    text{
+      font-size: 12px;
+      padding: 0;
+    }
+}

@@ -1,0 +1,24 @@
+<!--settings.wxml-->
+<view class="container-settings">
+    <image class="img-avatar" src="{{avatarLink}}" mode="aspectFit"></image>    
+    <text class="link-text">{{githubLink}}</text>
+    <view class="img-container">
+        <view class="frame">
+            <block>
+                <text>
+                    【如何分享】
+                    如果您觉得本应用有趣，不妨点击右上角“转发”分享给朋友吧。
+                </text>
+                <text>
+                    微信号：starlogcn。微博号: 星志君。星志时间轴： https://starlog.cn
+                </text>
+            </block>
+        </view>
+    </view>
+    <!-- <web-view src="https://starlog.cn/"></web-view> -->
+    <image class="img-avatar" src="{{qrCodeLink}}" mode="aspectFit" bindtap="previewImage"></image>
+
+
+    <button type="default" size="mini" open-type="contact"
+         hover-class="other-button-hover"> 联系我们 </button>
+</view>
