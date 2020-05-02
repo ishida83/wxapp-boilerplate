@@ -9,7 +9,7 @@ const URI = Config.api.host;
  * @return {Promise}  包含抓取任务的Promise
  **/
 function request(url, params, method = 'get') {
-  const requestUrl = URI + url;
+  const requestUrl = url.includes('http')? url: URI + url;
   return new Promise((resolve, reject) => {
     wx.request({
       url: requestUrl,

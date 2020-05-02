@@ -1,7 +1,7 @@
 <!--settings.wxml-->
 <view class="container-settings">
-    <image class="img-avatar" src="{{avatarLink}}" mode="aspectFit"></image>    
-    <text class="link-text">{{githubLink}}</text>
+    <image class="img-avatar" src="{{avatarLink}}" mode="aspectFit"></image>
+    <!-- <text class="link-text">{{githubLink}}</text> -->
     <view class="img-container">
         <view class="frame">
             <block>
@@ -10,8 +10,9 @@
                     如果您觉得本应用有趣，不妨点击右上角“转发”分享给朋友吧。
                 </text>
                 <text>
-                    微信号：starlogcn。微博号: 星志君。星志时间轴： https://starlog.cn
+                    微信号：starlogcn
                 </text>
+                <text>微博号: 星志君</text>
             </block>
         </view>
     </view>

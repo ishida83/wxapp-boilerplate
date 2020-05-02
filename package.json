@@ -28,7 +28,10 @@
 	"engines": {
 		"node": ">=4"
 	},
-  "copyWebpack": ["images", "icons"],
+	"copyWebpack": [
+    "images",
+    "project.config.json"
+	],
 	"devDependencies": {
 		"babel-core": "^6.24.0",
 		"babel-jest": "21.x",
